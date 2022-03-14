@@ -1,0 +1,122 @@
+﻿@model IEnumerable<TestFinal.Models.Customer>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 1;
+}
+
+<h2>Student infomation</h2>
+<p>Student Code: B8895</p>
+<p>Student Name: LÊ VĂN KHỞI</p>
+<p>Exam No: III</p>
+
+
+<h2>Customer</h2>
+
+@*<p class="btn btn-default">
+    @Html.ActionLink("Create New", "Create", "Customers", htmlAttributes: new { @class = "text-warning" })
+</p>*@
+<hr />
+
+@using (Html.BeginForm())
+{
+    <div class="col-md-1">
+        <p>Type</p>
+
+    </div>
+    <div class="col-md-3">
+
+        @Html.DropDownList("TypeId", null, htmlAttributes: new { @class = "form-control" })
+    </div>
+
+    <div class="col-md-1">
+        <span>Name</span>
+
+    </div>
+    <div class="col-md-3">
+
+        @Html.TextBox("name", null, htmlAttributes: new { @class = "form-control" })
+        
+    </div>
+
+    <div class="col-md-3">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+        @Html.ActionLink("All", "DisplayAll", new { @class = "btn btn-info" })
+    </div>
+
+
+    <p> Result: @ViewBag.CustomerCount</p>
+}
+
+
+    
+    
+
+    
+
+
+<div class="mg-top"></div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            Id
+        </th>
+        <th>
+            FullName
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            TypeName
+        </th>
+        <th></th>
+    </tr>
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @i
+                @{ i++;}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerType.TypeName)
+            </td>
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) |*@
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+
+            </td>
+        </tr>
+    }
+
+
+
+</table>
+
+
